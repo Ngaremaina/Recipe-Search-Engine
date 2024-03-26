@@ -1,6 +1,5 @@
 # Recipe Search Web Application
-
-This is a recipe search web application built using Django framework and integrating the Edamam API to search for recipes based on user input.
+This web application is designed as a robust recipe search platform, leveraging the Django framework and seamlessly integrating the powerful Edamam API. By harnessing the capabilities of Django, it offers a solid foundation for handling user interactions and data management. Through the integration of the Edamam API, users can effortlessly explore a vast array of recipes tailored to their preferences and requirements. Whether searching for specific dishes or seeking culinary inspiration, this application provides a comprehensive and user-friendly experience for discovering delicious recipes.
 
 ## Features
 
