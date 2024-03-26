@@ -10,27 +10,27 @@ This web application is designed as a robust recipe search platform, leveraging 
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/Ngaremaina/Recipe-Search-Engine
-   cd Recipe-Search-Engine
+      git clone https://github.com/Ngaremaina/Recipe-Search-Engine
+      cd Recipe-Search-Engine
    ```
 2. Intall the env variables
-  ```bash
-    python -m venv env
-   ```
+   ```bash
+      python -m venv env
+    ```
 
 3. Activate the env file
-  ```bash
-   source env/bin/activate
+   ```bash
+      source env/bin/activate
    ```
 
 4. Install dependencies:
    ```bash
-   pip install -r requirements.txt
+      pip install -r requirements.txt
    ```
 
 5. Start the development server:
    ```bash
-   python manage.py runserver
+      python manage.py runserver
    ```
 
 6. Open your web browser and go to `http://localhost:8000` to view the application.
