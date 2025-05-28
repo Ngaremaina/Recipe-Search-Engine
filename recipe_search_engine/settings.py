@@ -20,15 +20,20 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-(v747*t=i#_)i*n_!intdjrji_df291p3y%l3x*ose$2*#)b66'
+from decouple import config
+SECRET_KEY = config('SECRET_KEY')
+
+EDAMAM_APP_ID = config('EDAMAM_APP_ID')
+EDAMAM_APP_KEY = config('EDAMAM_APP_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
 ALLOWED_HOSTS = [
     'recipes-app-ksdw.onrender.com',
+    '127.0.0.1',
+    'localhost'
 ]
-
 
 # Application definition
 
@@ -57,7 +62,7 @@ ROOT_URLCONF = 'recipe_search_engine.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

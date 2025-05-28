@@ -1,28 +1,41 @@
 from django.shortcuts import render
 import requests 
+from django.conf import settings
 # Create your views here.
 def index(request):
-    query_set = "pork"
-    response = requests.get("https://api.edamam.com/api/recipes/v2?type=public&q="+query_set+"&app_id=4b55aada&app_key=%2062b760835f3546d3d7111edd448b68f9")
+    # Get 'q' parameter from the request, default to "pork"
+    query_set = request.GET.get('userText', 'pork')
 
-    json_response=response.json()
-    recipes = json_response['hits']
-    
+    response = requests.get(
+        f"https://api.edamam.com/api/recipes/v2?type=public&q={query_set}&app_id={settings.EDAMAM_APP_ID}&app_key={settings.EDAMAM_APP_KEY}"
+    )
+
+    json_response = response.json()
+    recipes = json_response.get('hits', [])
+
     return render(request, 'recipes/index.html', {
-        "recipes":recipes
+        "recipes": recipes,
     })
 
 def recipe_search(request):
-    if request.method == 'post':
-        user_text = request.POST.get('user_text')
-        response = requests.get("https://api.edamam.com/api/recipes/v2?type=public&q="+user_text+"&app_id=4b55aada&app_key=%2062b760835f3546d3d7111edd448b68f9")
+    if request.method == 'POST':
+        user_text = request.POST.get('userText')
+        url = (
+            f"https://api.edamam.com/api/recipes/v2"
+            f"?type=public&q={user_text}"
+            f"&app_id={settings.EDAMAM_APP_ID}"
+            f"&app_key={settings.EDAMAM_APP_KEY}"
+        )
+        response = requests.get(url)
         json_response = response.json()
-        recipes = json_response['hits']
-        return render(request, 'recipes/index.html',{
-            "recipes": recipes
+        recipes = json_response.get('hits', [])
+        return render(request, 'recipes/index.html', {
+            "recipes": recipes,
         })
     else:
-        return render(request, 'recipes/index.html')
+        return render(request, 'recipes/index.html', {
+            "recipes": [],
+        })
     
     
 def about(request):
